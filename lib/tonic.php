@@ -148,6 +148,12 @@ class Request {
      * @var str[]
      */
     public $mounts = array();
+
+	/**
+	 * The environment the request was made in
+	 * @var str[]
+ 	 */
+	public $env = array();
     
     /**
      * Set a default configuration option
@@ -202,6 +208,12 @@ class Request {
                 $this->mimetypes[$ext] = $mimetype;
             }
         }
+
+		if (isset($config['env']) && is_array($config['env'])) {
+			foreach ($config['env'] as $k => $v) {
+				$this->env[$k] = $v;
+			}
+		}
         
         // set baseUri
         $this->baseUri = $config['baseUri'];
