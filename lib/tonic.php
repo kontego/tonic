@@ -555,7 +555,7 @@ class Request {
             
             $this->allowedMethods = array_intersect(array_map('strtoupper', get_class_methods($resource['class'])), $this->HTTPMethods);
             
-            return new $resource['class']($parameters);
+            return new $resource['class']($parameters, $this->env);
         }
         
         // no resource found, throw response exception
@@ -611,13 +611,15 @@ class Request {
 class Resource {
     
     private $parameters;
+	protected $env;
     
     /**
      * Resource constructor
      * @param str[] parameters Parameters passed in from the URL as matched from the URI regex
      */
-    function  __construct($parameters) {
+    function  __construct($parameters, $env) {
         $this->parameters = $parameters;
+		$this->env = $env;
     }
     
     /**
