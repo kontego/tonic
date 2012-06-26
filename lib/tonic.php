@@ -154,6 +154,12 @@ class Request {
 	 * @var str[]
  	 */
 	public $env = array();
+
+	/**
+	 * The user making the request
+	 * @var User
+ 	 */
+	public $user = NULL;
     
     /**
      * Set a default configuration option
@@ -213,6 +219,10 @@ class Request {
 			foreach ($config['env'] as $k => $v) {
 				$this->env[$k] = $v;
 			}
+		}
+
+		if (isset($config['user']) && is_a($config['user'], 'User')) {
+			$this->user = $config['user'];
 		}
         
         // set baseUri

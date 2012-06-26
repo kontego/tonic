@@ -19,6 +19,7 @@ $test = new TestSuite('Tonic');
 $test->add($core);
 
 //*
+@include_once 'PHP/CodeCoverage/Autoload.php';
 @include_once 'PHP/CodeCoverage.php';
 if (class_exists('PHP_CodeCoverage')) {
     $coverage = new PHP_CodeCoverage;
